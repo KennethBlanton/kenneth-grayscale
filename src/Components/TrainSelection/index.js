@@ -5,11 +5,6 @@ import Select from 'react-select'
 
 const TrainSelection = ({selected, setSelected, getOptions}) => {
 
-    const formatKeys = (arr) => {
-        return arr.map((key,index) => {
-           return <option key={index} value={key}>{key}</option>
-        })
-    }
     const formatKeys2 = (select) => {
         return  getOptions(select).map((key,index) => {
            return {
@@ -20,18 +15,11 @@ const TrainSelection = ({selected, setSelected, getOptions}) => {
         })
     }
 
-    const selectChange = (e) => {
-        // console.log(e.target.id, e.target.value);
-        if (!e) return;
+    const selectChange = (e, select) => {
         const tmpValues = selected;
-        tmpValues[e.select] = e.value || null;
+        tmpValues[select] = e ? e.value : null;
         setSelected({...tmpValues})
     }
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-      ]
 
     return (
         <div className="trainSelection">
@@ -39,7 +27,7 @@ const TrainSelection = ({selected, setSelected, getOptions}) => {
                 <div className="select">
                     <Select
                         placeholder="Destinations"
-                        onChange={(e) => selectChange(e)} 
+                        onChange={(e) => selectChange(e, "DESTINATION")} 
                         options={formatKeys2("DESTINATION")}
                         isClearable
                     />
@@ -47,7 +35,7 @@ const TrainSelection = ({selected, setSelected, getOptions}) => {
                 <div className="select">
                     <Select
                         placeholder="Lines"
-                        onChange={(e) => selectChange(e)} 
+                        onChange={(e) => selectChange(e, "LINE")} 
                         options={formatKeys2("LINE")}
                         isClearable
                     />
@@ -55,7 +43,7 @@ const TrainSelection = ({selected, setSelected, getOptions}) => {
                 <div className="select">
                     <Select
                         placeholder="Directions"
-                        onChange={(e) => selectChange(e)} 
+                        onChange={(e) => selectChange(e, "DIRECTION")} 
                         options={formatKeys2("DIRECTION")}
                         isClearable
                     />
