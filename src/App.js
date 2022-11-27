@@ -1,33 +1,38 @@
 import logo from './logo.svg';
-import './App.css';
+import Nav from './Components/Nav';
+import Loader from './Components/Loader';
+import { useEffect, useState } from 'react';
+import Landing from './Pages/Landing';
 
 function App() {
-  const test = async () => {
-    const data = await fetch("http://localhost:5000/api").then (response => response.json())
-    .then(json => json)
-    .catch(e => e)
-    console.log(data)
-    return data
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([])
+
+  const getData = async () => {
+    setLoading(true);
+    await fetch("/api").then (response => response.json())
+    .then(json => {
+      setData([...json]);
+      setLoading(false);
+    })
+    .catch(e => console.log(e));
   }
-  test()
+
+  useEffect(() => {
+    getData()
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className="App-header"></header>
+        {loading ? <Loader /> : (
+          <>
+            <Nav refresh={getData} />
+            <Landing trains={data} />
+          </>
+        )}
+
     </div>
   );
 }
-
 export default App;

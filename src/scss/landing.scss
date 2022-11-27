@@ -1,0 +1,118 @@
+.landing {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 150px 0;
+    width:100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .text-large {
+        font-size:24px;
+    }
+
+    .text-medium {
+        font-size: 18px
+    }
+
+    .text-small {
+        font-size: 14px;
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+    
+
+    &__trainlist {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        &-inner {
+            display:flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+
+            div {
+                width:33%;
+                
+                p {
+                    text-align: left;
+                    padding: 5px 30px;
+                    margin: 0;
+                }
+            }
+        }
+    }
+    
+    .train-list {
+        padding: 0 30px;
+        &__list-item {
+            border-radius: 10px;
+            padding-bottom: 30px;
+            flex: 0 0 100%;
+            
+
+            @media (min-width: 768px) {
+                flex: 0 0 calc(50% - 16px);
+
+                &__row {
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+
+            
+            &__inner {
+                background:  #fff;
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            // border-bottom: 1px solid #eee;
+            // margin-bottom: 16px;
+            &__row {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+
+                @media (min-width: 768px) {
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+
+                &:nth-of-type(1) .text-medium {
+                    font-size: 20px;
+                    margin: 0 0 16px;
+                }
+
+                &__column {
+                    display:flex;
+                    flex-direction: column;
+
+                    &.destination {
+                        padding-right: 30px;
+                        // width: 200px;
+                    }
+
+
+                    
+                    p {
+                        font-size: 18px;
+                        margin:0;
+                        text-transform: capitalize;
+                        padding-bottom: 10px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
